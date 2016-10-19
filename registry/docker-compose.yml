@@ -1,0 +1,20 @@
+version: '2'
+services:
+  registry_server:
+    image: registry
+    container_name: moonshine2.registry.dev
+    privileged: true
+    ports:
+     - "5000:5000"
+    volumes:
+      - "/home/docker_volumes/registry:/var/lib/registry"
+    networks:
+      moonshine_registry_dev:
+         ipv4_address: 10.10.4.7
+networks:
+  moonshine_registry_dev:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.10.4.0/25
+          gateway: 10.10.4.1    
